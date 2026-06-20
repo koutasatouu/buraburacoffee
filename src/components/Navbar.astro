@@ -1,15 +1,33 @@
 ---
 /* Navbar.astro */
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
 ---
 
 <header class="navbar-header">
   <div class="container nav-container">
     <!-- Brand Logo -->
-    <a href="#" class="brand-logo-link" aria-label="Bura Bura Coffee Home">
+    <a
+      href={lang === "en" ? "/" : "/id"}
+      class="brand-logo-link"
+      aria-label="Bura Bura Coffee Home"
+    >
       <div class="logo-icon">
-        <svg viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-          <path d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z" fill="currentColor"/>
-          <path d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z" fill="currentColor"/>
+        <svg
+          viewBox="0 0 44 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+        >
+          <path
+            d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z"
+            fill="currentColor"></path>
+          <path
+            d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z"
+            fill="currentColor"></path>
         </svg>
       </div>
       <span class="brand-name">BURA BURA</span>
@@ -18,19 +36,50 @@
     <!-- Desktop Navigation Links -->
     <nav class="desktop-nav">
       <ul class="nav-links">
-        <li><a href="#" class="nav-link">Home</a></li>
-        <li><a href="#about" class="nav-link">Tentang Kami</a></li>
+        <li><a href={lang === "en" ? "/" : "/id"} class="nav-link">Home</a></li>
+        <li>
+          <a href="#about" class="nav-link"
+            >{lang === "id" ? "Tentang Kami" : "About Us"}</a>
+        </li>
         <li><a href="#menu" class="nav-link">Menu</a></li>
         <li><a href="#gallery" class="nav-link">Experience</a></li>
-        <li><a href="#location" class="nav-link">Lokasi</a></li>
+        <li>
+          <a href="#location" class="nav-link"
+            >{lang === "id" ? "Lokasi" : "Location"}</a>
+        </li>
       </ul>
     </nav>
 
-    <!-- Navbar Action Button -->
+    <!-- Navbar Action Buttons & Lang Switcher -->
     <div class="nav-actions">
-      <a href="#contact" class="btn btn-primary btn-nav">Pesan Sekarang</a>
+      <!-- Single Toggle Language Button -->
+      {
+        lang === "en" ? (
+          <a
+            href="/id"
+            class="lang-toggle-btn"
+            title="Ubah ke Bahasa Indonesia"
+          >
+            ID
+          </a>
+        ) : (
+          <a href="/" class="lang-toggle-btn" title="Switch to English">
+            EN
+          </a>
+        )
+      }
+
+      <a href="#contact" class="btn btn-primary btn-nav">
+        {lang === "id" ? "Pesan Sekarang" : "Order Now"}
+      </a>
+
       <!-- Hamburger Menu Button -->
-      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu" aria-controls="nav-menu">
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-label="Toggle Menu"
+        aria-controls="nav-menu"
+      >
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
@@ -41,12 +90,42 @@
   <!-- Mobile Navigation Menu -->
   <nav class="mobile-nav" id="nav-menu">
     <ul class="mobile-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">Tentang Kami</a></li>
+      <li><a href={lang === "en" ? "/" : "/id"}>Home</a></li>
+      <li>
+        <a href="#about">{lang === "id" ? "Tentang Kami" : "About Us"}</a>
+      </li>
       <li><a href="#menu">Menu</a></li>
       <li><a href="#gallery">Experience</a></li>
-      <li><a href="#location">Lokasi</a></li>
-      <li><a href="#contact" class="btn btn-primary mobile-cta">Pesan Sekarang</a></li>
+      <li><a href="#location">{lang === "id" ? "Lokasi" : "Location"}</a></li>
+
+      <!-- Mobile Language Switcher -->
+      <li class="mobile-lang-row">
+        {
+          lang === "en" ? (
+            <a
+              href="/id"
+              class="lang-toggle-btn mobile-lang-toggle"
+              title="Ubah ke Bahasa Indonesia"
+            >
+              ID
+            </a>
+          ) : (
+            <a
+              href="/"
+              class="lang-toggle-btn mobile-lang-toggle"
+              title="Switch to English"
+            >
+              EN
+            </a>
+          )
+        }
+      </li>
+
+      <li>
+        <a href="#contact" class="btn btn-primary mobile-cta">
+          {lang === "id" ? "Pesan Sekarang" : "Order Now"}
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -117,7 +196,7 @@
   }
 
   .nav-link::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;
@@ -138,7 +217,33 @@
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+
+  /* Single Toggle Language Button */
+  .lang-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--color-text-light-muted);
+    font-family: var(--font-subheading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transition: var(--transition-fast);
+  }
+
+  .lang-toggle-btn:hover {
+    color: #ffffff;
+    background-color: var(--color-blue-primary);
+    border-color: var(--color-blue-primary);
+    box-shadow: 0 4px 12px var(--color-blue-glow-strong);
+    transform: translateY(-1px);
   }
 
   .btn-nav {
@@ -210,9 +315,10 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.75rem;
     width: 80%;
     max-width: 400px;
+    align-items: center;
   }
 
   .mobile-links a {
@@ -229,11 +335,24 @@
     transform: scale(1.05);
   }
 
+  .mobile-lang-row {
+    margin: 0.5rem 0;
+  }
+
+  .mobile-lang-toggle {
+    width: 48px;
+    height: 48px;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
   .mobile-cta {
     font-family: var(--font-subheading) !important;
     font-size: 1rem !important;
     padding: 1rem 2rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   /* Responsive Adjustments */
@@ -245,7 +364,7 @@
     .menu-toggle {
       display: flex;
     }
-    
+
     .btn-nav {
       display: none;
     }

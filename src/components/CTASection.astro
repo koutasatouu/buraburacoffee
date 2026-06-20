@@ -1,5 +1,10 @@
 ---
 /* CTASection.astro */
+interface Props {
+  lang?: string;
+}
+
+const { lang = "id" } = Astro.props;
 ---
 
 <section id="contact" class="section section-concrete">
@@ -9,29 +14,95 @@
       <div class="cta-glow"></div>
 
       <div class="cta-content">
-        <span class="badge">Kunjungi Kami</span>
-        <h2 class="cta-title">Siap Merasakan <br/>Kopi Murni Tanpa Gula?</h2>
+        <span class="badge">{lang === "id" ? "Kunjungi Kami" : "Visit Us"}</span
+        >
+        <h2 class="cta-title">
+          {
+            lang === "id" ? (
+              <>
+                Siap Merasakan <br />
+                Kopi Murni Tanpa Gula?
+              </>
+            ) : (
+              <>
+                Ready to Experience <br />
+                Pure, Sugar-Less Coffee?
+              </>
+            )
+          }
+        </h2>
         <p class="cta-desc">
-          Lepaskan penat, temukan kembali esensi kopi yang sesungguhnya, dan nikmati momen produktif atau santai Anda di Bura Bura Coffee Yogyakarta. Kami menanti kehadiran Anda hari ini.
+          {
+            lang === "id"
+              ? "Lepaskan penat, temukan kembali esensi kopi yang sesungguhnya, dan nikmati momen produktif atau santai Anda di Bura Bura Coffee Yogyakarta. Kami menanti kehadiran Anda hari ini."
+              : "Unwind, rediscover the true essence of coffee, and enjoy your productive or relaxing moments at Bura Bura Coffee Yogyakarta. We look forward to welcoming you today."
+          }
         </p>
-        
+
         <div class="cta-actions">
-          <a href="https://wa.me/6281234567890?text=Halo%20Bura%20Bura%20Coffee,%20saya%20ingin%20tanya%20reservasi" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-cta-light">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Tanya Reservasi via WA
+          <a
+            href="https://wa.me/6281234567890?text=Halo%20Bura%20Bura%20Coffee,%20saya%20ingin%20tanya%20reservasi"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary btn-cta-light"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path></svg
+            >
+            {
+              lang === "id"
+                ? "Tanya Reservasi via WA"
+                : "Inquire Reservations via WA"
+            }
           </a>
-          <a href="https://instagram.com/buraburacoffee" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            Ikuti Instagram Kami
+          <a
+            href="https://instagram.com/buraburacoffee"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><rect x="2" y="2" width="20" height="20" rx="5" ry="5"
+              ></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+              ></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg
+            >
+            {lang === "id" ? "Ikuti Instagram Kami" : "Follow Our Instagram"}
           </a>
         </div>
       </div>
 
       <!-- Secondary graphic / visual overlay -->
       <div class="cta-graphic">
-        <svg class="cta-logo-bg" viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <path d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z" fill="currentColor"/>
-          <path d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z" fill="currentColor"/>
+        <svg
+          class="cta-logo-bg"
+          viewBox="0 0 44 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+        >
+          <path
+            d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z"
+            fill="currentColor"></path>
+          <path
+            d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z"
+            fill="currentColor"></path>
         </svg>
       </div>
     </div>
@@ -40,7 +111,11 @@
 
 <style>
   .cta-card {
-    background: linear-gradient(135deg, var(--color-blue-dark) 0%, var(--color-blue-primary) 100%);
+    background: linear-gradient(
+      135deg,
+      var(--color-blue-dark) 0%,
+      var(--color-blue-primary) 100%
+    );
     border-radius: 32px;
     padding: 5rem;
     position: relative;
@@ -59,7 +134,11 @@
     right: -20%;
     width: 60%;
     height: 100%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(26, 63, 226, 0) 75%);
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(26, 63, 226, 0) 75%
+    );
     pointer-events: none;
   }
 

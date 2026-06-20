@@ -1,15 +1,46 @@
 ---
 /* ExperienceGallery.astro */
+interface Props {
+  lang?: string;
+}
+
+const { lang = "id" } = Astro.props;
 ---
 
 <section id="gallery" class="section section-concrete">
   <div class="container">
     <!-- Header -->
     <div class="gallery-header reveal">
-      <span class="badge">Cafe Experience</span>
-      <h2 class="section-title">Ruang yang Tenang, <br/><span class="text-gradient-blue">Suasana yang Hidup</span></h2>
+      <span class="badge"
+        >{lang === "id" ? "Cafe Experience" : "Space Experience"}</span
+      >
+      <h2 class="section-title">
+        {
+          lang === "id" ? (
+            <>
+              Ruang yang Tenang,{" "}
+              <>
+                <br />
+                <span class="text-gradient-blue">Suasana yang Hidup</span>
+              </>
+            </>
+          ) : (
+            <>
+              A Quiet Space,{" "}
+              <>
+                <br />
+                <span class="text-gradient-blue">A Vibrant Atmosphere</span>
+              </>
+            </>
+          )
+        }
+      </h2>
       <p class="section-subtitle">
-        Desain minimalis industrial kami dirancang khusus untuk meminimalkan gangguan visual, membantu Anda fokus menikmati cita rasa kopi murni atau menyelesaikan pekerjaan kreatif Anda.
+        {
+          lang === "id"
+            ? "Desain minimalis industrial kami dirancang khusus untuk meminimalkan gangguan visual, membantu Anda fokus menikmati cita rasa kopi murni atau menyelesaikan pekerjaan kreatif Anda."
+            : "Our minimalist industrial design is intentionally crafted to minimize visual clutter, helping you focus on enjoying pure coffee flavor or completing your creative work."
+        }
       </p>
     </div>
 
@@ -17,31 +48,68 @@
     <div class="bento-grid">
       <!-- Item 1: Ambience (Large Feature) -->
       <div class="bento-item bento-large reveal">
-        <img src="/interior.png" alt="Suasana Interior Industrial Minimalis Bura Bura Coffee" class="bento-img" loading="lazy" />
+        <img
+          src="/interior.png"
+          alt="Suasana Interior Industrial Minimalis Bura Bura Coffee"
+          class="bento-img"
+          loading="lazy"
+        />
         <div class="bento-overlay">
           <div class="bento-text">
-            <span class="bento-tag">Interior</span>
-            <h3 class="bento-title">Minimalist Industrial Space</h3>
-            <p class="bento-desc">Dinding semen ekspos, pencahayaan alami, dan ruang lapang untuk kenyamanan pikiran Anda.</p>
+            <span class="bento-tag">{lang === "id" ? "Interior" : "Space"}</span
+            >
+            <h3 class="bento-title">
+              {
+                lang === "id"
+                  ? "Ruang Industrial Minimalis"
+                  : "Minimalist Industrial Space"
+              }
+            </h3>
+            <p class="bento-desc">
+              {
+                lang === "id"
+                  ? "Dinding semen ekspos, pencahayaan alami, dan ruang lapang untuk kenyamanan pikiran Anda."
+                  : "Exposed concrete walls, natural lighting, and open layout for your peace of mind."
+              }
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Item 2: Coffee Craft (Tall Feature) -->
       <div class="bento-item bento-tall reveal reveal-delay-1">
-        <img src="/barista.png" alt="Proses Brewing Kopi Spesialti Bura Bura" class="bento-img" loading="lazy" />
+        <img
+          src="/barista.png"
+          alt="Proses Brewing Kopi Spesialti Bura Bura"
+          class="bento-img"
+          loading="lazy"
+        />
         <div class="bento-overlay">
           <div class="bento-text">
-            <span class="bento-tag">Craft</span>
-            <h3 class="bento-title">Barista Craftsmanship</h3>
-            <p class="bento-desc">Setiap cangkir adalah hasil kalibrasi ekstraksi yang cermat.</p>
+            <span class="bento-tag">{lang === "id" ? "Keahlian" : "Craft"}</span
+            >
+            <h3 class="bento-title">
+              {lang === "id" ? "Keahlian Barista" : "Barista Craftsmanship"}
+            </h3>
+            <p class="bento-desc">
+              {
+                lang === "id"
+                  ? "Setiap cangkir adalah hasil kalibrasi ekstraksi yang cermat."
+                  : "Every single cup is the result of meticulous extraction calibration."
+              }
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Item 3: Coffee Drink (Square) -->
       <div class="bento-item reveal reveal-delay-2">
-        <img src="/hero.png" alt="Cangkir Dirty Coffee di Bura Bura" class="bento-img" loading="lazy" />
+        <img
+          src="/hero.png"
+          alt="Cangkir Dirty Coffee di Bura Bura"
+          class="bento-img"
+          loading="lazy"
+        />
         <div class="bento-overlay">
           <div class="bento-text">
             <span class="bento-tag">Signature</span>
@@ -55,7 +123,11 @@
         <div class="text-card-content">
           <span class="quote-mark">“</span>
           <p class="brand-quote">
-            Kopi yang jujur lahir dari keheningan proses. Kami meniadakan keributan rasa tambahan untuk mempertemukan Anda dengan esensi biji kopi yang sebenarnya.
+            {
+              lang === "id"
+                ? "Kopi yang jujur lahir dari keheningan proses. Kami meniadakan keributan rasa tambahan untuk mempertemukan Anda dengan esensi biji kopi yang sebenarnya."
+                : "Honest coffee is born from the silence of the process. We eliminate the noise of artificial flavors to reconnect you with the true essence of the bean."
+            }
           </p>
           <span class="quote-author">Bura Bura Coffee Club</span>
         </div>
@@ -63,12 +135,29 @@
 
       <!-- Item 5: Pastries (Wide Feature) -->
       <div class="bento-item bento-wide reveal reveal-delay-4">
-        <img src="/pastries.png" alt="Sajian Pastri Premium di Bura Bura" class="bento-img" loading="lazy" />
+        <img
+          src="/pastries.png"
+          alt="Sajian Pastri Premium di Bura Bura"
+          class="bento-img"
+          loading="lazy"
+        />
         <div class="bento-overlay">
           <div class="bento-text">
-            <span class="bento-tag">Food</span>
-            <h3 class="bento-title">Fresh Pastry Pairings</h3>
-            <p class="bento-desc">Croissant renyah berlapis mentega yang dipanggang segar setiap pagi.</p>
+            <span class="bento-tag">{lang === "id" ? "Makanan" : "Food"}</span>
+            <h3 class="bento-title">
+              {
+                lang === "id"
+                  ? "Pastri Segar Pendamping Kopi"
+                  : "Fresh Pastry Pairings"
+              }
+            </h3>
+            <p class="bento-desc">
+              {
+                lang === "id"
+                  ? "Croissant renyah berlapis mentega yang dipanggang segar setiap pagi."
+                  : "Buttery, flaky croissants baked fresh in our ovens every morning."
+              }
+            </p>
           </div>
         </div>
       </div>
@@ -117,7 +206,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(8, 9, 13, 0.9) 0%, rgba(8, 9, 13, 0.4) 60%, rgba(8, 9, 13, 0) 100%);
+    background: linear-gradient(
+      to top,
+      rgba(8, 9, 13, 0.9) 0%,
+      rgba(8, 9, 13, 0.4) 60%,
+      rgba(8, 9, 13, 0) 100%
+    );
     display: flex;
     align-items: flex-end;
     padding: 1.5rem;
@@ -132,16 +226,28 @@
   }
 
   /* For large items, overlay is always semi-visible and gets darker on hover */
-  .bento-large .bento-overlay, .bento-tall .bento-overlay, .bento-wide .bento-overlay {
+  .bento-large .bento-overlay,
+  .bento-tall .bento-overlay,
+  .bento-wide .bento-overlay {
     opacity: 0.85;
-    background: linear-gradient(to top, rgba(8, 9, 13, 0.85) 0%, rgba(8, 9, 13, 0.2) 60%, rgba(8, 9, 13, 0) 100%);
+    background: linear-gradient(
+      to top,
+      rgba(8, 9, 13, 0.85) 0%,
+      rgba(8, 9, 13, 0.2) 60%,
+      rgba(8, 9, 13, 0) 100%
+    );
   }
 
-  .bento-item:hover.bento-large .bento-overlay, 
-  .bento-item:hover.bento-tall .bento-overlay, 
+  .bento-item:hover.bento-large .bento-overlay,
+  .bento-item:hover.bento-tall .bento-overlay,
   .bento-item:hover.bento-wide .bento-overlay {
     opacity: 1;
-    background: linear-gradient(to top, rgba(8, 9, 13, 0.95) 0%, rgba(8, 9, 13, 0.4) 60%, rgba(8, 9, 13, 0) 100%);
+    background: linear-gradient(
+      to top,
+      rgba(8, 9, 13, 0.95) 0%,
+      rgba(8, 9, 13, 0.4) 60%,
+      rgba(8, 9, 13, 0) 100%
+    );
   }
 
   .bento-text {
@@ -153,7 +259,9 @@
     transform: translateY(0);
   }
 
-  .bento-large .bento-text, .bento-tall .bento-text, .bento-wide .bento-text {
+  .bento-large .bento-text,
+  .bento-tall .bento-text,
+  .bento-wide .bento-text {
     transform: translateY(0);
   }
 
@@ -208,7 +316,11 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: radial-gradient(circle at top left, var(--color-blue-glow) 0%, transparent 70%);
+    background: radial-gradient(
+      circle at top left,
+      var(--color-blue-glow) 0%,
+      transparent 70%
+    );
   }
 
   .text-card-content {
@@ -254,7 +366,7 @@
     .bento-grid {
       grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .bento-wide {
       grid-column: span 1;
     }
@@ -284,7 +396,10 @@
       gap: 1rem;
     }
 
-    .bento-large, .bento-tall, .bento-wide, .bento-text-card {
+    .bento-large,
+    .bento-tall,
+    .bento-wide,
+    .bento-text-card {
       grid-column: span 1;
       grid-row: span 1;
     }
@@ -292,7 +407,7 @@
     .bento-text-card {
       padding: 1.5rem;
     }
-    
+
     .brand-quote {
       font-size: 0.95rem;
     }

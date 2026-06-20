@@ -1,18 +1,25 @@
 ---
 /* AboutUs.astro */
+interface Props {
+  lang?: string;
+}
+
+const { lang = "id" } = Astro.props;
 ---
 
 <section id="about" class="section section-concrete">
   <div class="container about-container">
     <!-- Left Column: Visual Collage -->
     <div class="about-visual reveal">
-      <div class="about-image-wrapper">
-        <img 
-          src="/barista.png" 
-          alt="Proses Pembuatan Kopi Spesialti di Bura Bura Coffee" 
-          class="about-image"
-          loading="lazy"
-        />
+      <div class="about-image-container">
+        <div class="about-image-wrapper">
+          <img
+            src="/barista.png"
+            alt="Proses Pembuatan Kopi Spesialti di Bura Bura Coffee"
+            class="about-image"
+            loading="lazy"
+          />
+        </div>
         <!-- Accent Frame overlay -->
         <div class="accent-frame"></div>
       </div>
@@ -21,45 +28,134 @@
         <span class="stat-icon">☕</span>
         <div class="stat-text">
           <span class="stat-value">Sugar-Less</span>
-          <span class="stat-desc">Enjoyable & Accessible</span>
+          <span class="stat-desc"
+            >{lang === "id" ? "Nikmat & Sehat" : "Enjoyable & Accessible"}</span
+          >
         </div>
       </div>
     </div>
 
     <!-- Right Column: Story Text -->
     <div class="about-content reveal reveal-delay-2">
-      <span class="badge">Tentang Kami</span>
+      <span class="badge">{lang === "id" ? "Tentang Kami" : "About Us"}</span>
       <h2 class="section-title">
-        Menolak Manis Buatan, <br/>
-        <span class="text-gradient-blue">Merayakan Cita Rasa Murni</span>
+        {
+          lang === "id" ? (
+            <>
+              Menolak Manis Buatan,{" "}
+              <>
+                <br />
+                <span class="text-gradient-blue">
+                  Merayakan Cita Rasa Murni
+                </span>
+              </>
+            </>
+          ) : (
+            <>
+              Rejecting Artificial Sweetness,{" "}
+              <>
+                <br />
+                <span class="text-gradient-blue">Celebrating Pure Flavor</span>
+              </>
+            </>
+          )
+        }
       </h2>
       <p class="story-paragraph highlight">
-        "To redefine coffee culture by making sugar-less coffee enjoyable, accessible, and loved by everyone."
+        "To redefine coffee culture by making sugar-less coffee enjoyable,
+        accessible, and loved by everyone."
       </p>
-      <p class="story-paragraph">
-        Di Bura Bura Coffee, kami percaya bahwa setiap biji kopi memiliki cerita rasa tersendiri—aroma buah yang segar, rasa manis madu alami, hingga sentuhan cokelat yang pekat. Menambahkan gula berlebih sering kali menutupi keindahan rasa asli ini. 
-      </p>
-      <p class="story-paragraph">
-        Itulah mengapa kami memelopori budaya kopi tanpa gula tambahan. Melalui teknik sangrai yang presisi dan ekstraksi ristretto yang dikalibrasi ketat, kami membuktikan bahwa kopi murni bisa dinikmati oleh semua orang dengan rasa yang bulat, lembut, dan tanpa rasa pahit yang mengganggu.
-      </p>
-      
+
+      {
+        lang === "id" ? (
+          <>
+            <p class="story-paragraph">
+              Di Bura Bura Coffee, kami percaya bahwa setiap biji kopi memiliki
+              cerita rasa tersendiri—aroma buah yang segar, rasa manis madu
+              alami, hingga sentuhan cokelat yang pekat. Menambahkan gula
+              berlebih sering kali menutupi keindahan rasa asli ini.
+            </p>
+            <p class="story-paragraph">
+              Itulah mengapa kami memelopori budaya kopi tanpa gula tambahan.
+              Melalui teknik sangrai yang presisi dan ekstraksi ristretto yang
+              dikalibrasi ketat, kami membuktikan bahwa kopi murni bisa
+              dinikmati oleh semua orang dengan rasa yang bulat, lembut, dan
+              tanpa rasa pahit yang mengganggu.
+            </p>
+          </>
+        ) : (
+          <>
+            <p class="story-paragraph">
+              At Bura Bura Coffee, we believe that every coffee bean tells its
+              own flavor story—fresh fruity notes, natural honey sweetness, to
+              rich dark chocolate undertones. Adding excessive sugar often masks
+              this native beauty.
+            </p>
+            <p class="story-paragraph">
+              That is why we pioneer a sugar-less coffee culture. Through
+              precise roasting profiles and strictly calibrated ristretto
+              extractions, we prove that pure coffee can be enjoyed by everyone
+              with a smooth, well-rounded taste, free of unpleasant bitterness.
+            </p>
+          </>
+        )
+      }
+
       <div class="philosophy-grid">
         <div class="philosophy-item">
           <div class="phil-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path
+                d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+              ></path></svg
+            >
           </div>
           <div class="phil-details">
-            <h3 class="phil-title">Pilihan Lebih Sehat</h3>
-            <p class="phil-desc">Nikmati kafein harian Anda tanpa khawatir akan kalori kosong dan lonjakan gula darah.</p>
+            <h3 class="phil-title">
+              {lang === "id" ? "Pilihan Lebih Sehat" : "Healthier Choice"}
+            </h3>
+            <p class="phil-desc">
+              {
+                lang === "id"
+                  ? "Nikmati kafein harian Anda tanpa khawatir akan kalori kosong dan lonjakan gula darah."
+                  : "Enjoy your daily caffeine kick without worrying about empty calories or blood sugar spikes."
+              }
+            </p>
           </div>
         </div>
         <div class="philosophy-item">
           <div class="phil-icon-wrapper">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9.09 9 1-1a3 3 0 0 1 5.91 1 3 3 0 0 1-2.91 3h-.09M12 17h.01"/></svg>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><circle cx="12" cy="12" r="10"></circle><path
+                d="m9.09 9 1-1a3 3 0 0 1 5.91 1 3 3 0 0 1-2.91 3h-.09M12 17h.01"
+              ></path></svg
+            >
           </div>
           <div class="phil-details">
             <h3 class="phil-title">Ristretto Base</h3>
-            <p class="phil-desc">Menggunakan potongan ekstraksi ristretto yang lebih manis dan pekat sebagai bahan dasar minuman kami.</p>
+            <p class="phil-desc">
+              {
+                lang === "id"
+                  ? "Menggunakan potongan ekstraksi ristretto yang lebih manis dan pekat sebagai bahan dasar minuman kami."
+                  : "Using sweet and concentrated ristretto extraction cuts as the foundation of our beverages."
+              }
+            </p>
           </div>
         </div>
       </div>
@@ -82,15 +178,21 @@
     justify-content: flex-start;
   }
 
-  .about-image-wrapper {
+  .about-image-container {
     position: relative;
     width: 100%;
     max-width: 420px;
     aspect-ratio: 4/5;
+  }
+
+  .about-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
     overflow: hidden;
     z-index: 2;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
 
   .about-image {
@@ -117,7 +219,7 @@
     transition: var(--transition-smooth);
   }
 
-  .about-visual:hover .accent-frame {
+  .about-image-container:hover .accent-frame {
     transform: translate(8px, -8px);
     border-color: var(--color-blue-light);
   }
@@ -259,11 +361,11 @@
     .floating-stat-card {
       display: none;
     }
-    
+
     .about-image-wrapper {
       max-width: 320px;
     }
-    
+
     .accent-frame {
       display: none;
     }

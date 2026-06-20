@@ -1,0 +1,32 @@
+.list {
+  position: relative;
+  width: 100%;
+  min-height: 800px; /* Ensure there is a baseline height so the container doesn't collapse */
+}
+
+.item-wrapper {
+  position: absolute;
+  will-change: transform, width, height, opacity;
+  padding: 8px; /* Slightly increased padding for cleaner grid lines */
+  cursor: pointer;
+  top: 0;
+  left: 0;
+}
+
+.item-wrapper > .item-img {
+  position: relative;
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px; /* Matches Bura Bura card border radius */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Minimalist outline */
+  background-color: var(--color-bg-concrete-light); /* Fallback block color */
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35); /* Premium shadow */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-wrapper:hover > .item-img {
+  border-color: rgba(26, 63, 226, 0.4); /* Highlight with brand blue on hover */
+  box-shadow: 0 16px 48px rgba(26, 63, 226, 0.2);
+}

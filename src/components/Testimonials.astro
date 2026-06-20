@@ -1,22 +1,34 @@
 ---
 /* Testimonials.astro */
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+
 const reviews = [
   {
     name: "Aditya Nugroho",
-    role: "Creative Director",
-    quote: "Akhirnya ada kafe di Jogja yang berani memelopori kopi berkualitas tanpa tambahan gula. Dirty Zero-nya sangat lembut, gurih alaminya dapet banget dari ristretto. Suasana industrialnya juga sangat kondusif buat nyari ide.",
+    roleId: "Creative Director",
+    roleEn: "Creative Director",
+    quoteId: "Akhirnya ada kafe di Jogja yang berani memelopori kopi berkualitas tanpa tambahan gula. Dirty Zero-nya sangat lembut, gurih alaminya dapet banget dari ristretto. Suasana industrialnya juga sangat kondusif buat nyari ide.",
+    quoteEn: "Finally a cafe in Jogja that dares to pioneer high-quality coffee without added sugar. The Dirty Zero is extremely smooth, its natural sweetness comes through perfectly from the ristretto base. The industrial space is highly conducive to brainstorming ideas.",
     rating: 5
   },
   {
     name: "Nadia Utami",
-    role: "Architect & Designer",
-    quote: "Jatuh cinta dengan desain arsitektur semen ekspos minimalisnya. Perpaduan concrete grey dengan aksen cobalt blue-nya sangat estetis. Pencahayaan alami yang masuk bikin nongkrong sore di sini berkesan banget.",
+    roleId: "Arsitek & Desainer",
+    roleEn: "Architect & Designer",
+    quoteId: "Jatuh cinta dengan desain arsitektur semen ekspos minimalisnya. Perpaduan concrete grey dengan aksen cobalt blue-nya sangat estetis. Pencahayaan alami yang masuk bikin nongkrong sore di sini berkesan banget.",
+    quoteEn: "In love with the minimalist exposed concrete architectural design. The blend of concrete grey with cobalt blue accents is highly aesthetic. The natural light coming in makes a late afternoon hang out here very memorable.",
     rating: 5
   },
   {
     name: "Rian Pratama",
-    role: "Software Engineer",
-    quote: "Wi-Fi kencang, colokan berlimpah, dan kopi sehat yang bikin fokus coding seharian tanpa sugar crash setelahnya. Cabang Cokroaminoto sekarang resmi jadi coworking space andalan saya.",
+    roleId: "Software Engineer",
+    roleEn: "Software Engineer",
+    quoteId: "Wi-Fi kencang, colokan berlimpah, dan kopi sehat yang bikin fokus coding seharian tanpa sugar crash setelahnya. Cabang Cokroaminoto sekarang resmi jadi coworking space andalan saya.",
+    quoteEn: "Fast WiFi, abundant power plugs, and healthy coffee that keeps me focused coding all day without any subsequent sugar crash. The Cokroaminoto branch is officially my go-to coworking space.",
     rating: 5
   }
 ];
@@ -26,10 +38,18 @@ const reviews = [
   <div class="container">
     <!-- Header -->
     <div class="testimonials-header reveal">
-      <span class="badge">Testimoni Pengunjung</span>
-      <h2 class="section-title text-center">Apa Kata <br/><span class="text-gradient-blue">Sahabat Bura Bura?</span></h2>
+      <span class="badge">{lang === 'id' ? 'Testimoni Pengunjung' : 'Customer Reviews'}</span>
+      <h2 class="section-title text-center">
+        {lang === 'id' ? (
+          <>Apa Kata <br/><span class="text-gradient-blue">Sahabat Bura Bura?</span></>
+        ) : (
+          <>What Our <br/><span class="text-gradient-blue">Friends Say</span></>
+        )}
+      </h2>
       <p class="section-subtitle">
-        Kepuasan pengunjung adalah prioritas kami. Berikut adalah pengalaman jujur mereka setelah mengunjungi ruang dan mencicipi kopi kami.
+        {lang === 'id' 
+          ? 'Kepuasan pengunjung adalah prioritas kami. Berikut adalah pengalaman jujur mereka setelah mengunjungi ruang dan mencicipi kopi kami.'
+          : 'Visitor satisfaction is our top priority. Here are their honest experiences after visiting our spaces and tasting our coffee.'}
       </p>
     </div>
 
@@ -48,7 +68,7 @@ const reviews = [
 
           <!-- Quote -->
           <blockquote class="review-quote">
-            "{review.quote}"
+            "{lang === 'id' ? review.quoteId : review.quoteEn}"
           </blockquote>
 
           <!-- Author Info -->
@@ -59,7 +79,7 @@ const reviews = [
             </div>
             <div class="author-details">
               <span class="author-name">{review.name}</span>
-              <span class="author-role">{review.role}</span>
+              <span class="author-role">{lang === 'id' ? review.roleId : review.roleEn}</span>
             </div>
           </div>
         </div>

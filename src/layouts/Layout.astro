@@ -2,64 +2,75 @@
 interface Props {
   title: string;
   description?: string;
+  lang?: string;
 }
 
-const { 
-  title, 
-  description = "Bura Bura Coffee - Redefining coffee culture by making sugar-less coffee enjoyable, accessible, and loved by everyone." 
+const {
+  title,
+  description = "Bura Bura Coffee - Redefining coffee culture by making sugar-less coffee enjoyable, accessible, and loved by everyone.",
+  lang = "id",
 } = Astro.props;
 
-import '../styles/global.css';
+import "../styles/global.css";
+import ClickSpark from "../components/ClickSpark.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/hero.png" />
+    <meta property="og:image" content="/logo.jpg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="/hero.png" />
+    <meta property="twitter:image" content="/logo.jpg" />
 
     <!-- Google Fonts Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
-    <slot />
+    <ClickSpark
+      sparkColor="#1a3fe2"
+      sparkSize={12}
+      sparkRadius={25}
+      sparkCount={10}
+      duration={450}
+    >
+      <slot />
+    </ClickSpark>
 
     <script>
       // Handle Loading Screen and Scroll Reveal
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         // Prevent scroll on body initially
-        document.body.style.overflow = 'hidden';
+        document.body.style.overflow = "hidden";
 
-        const loadingScreen = document.getElementById('loading-screen');
-        
+        const loadingScreen = document.getElementById("loading-screen");
+
         // Hide loading screen after 2 seconds
         setTimeout(() => {
           if (loadingScreen) {
-            loadingScreen.style.opacity = '0';
-            loadingScreen.style.pointerEvents = 'none';
+            loadingScreen.style.opacity = "0";
+            loadingScreen.style.pointerEvents = "none";
             setTimeout(() => {
-              loadingScreen.style.display = 'none';
-              document.body.style.overflow = '';
+              loadingScreen.style.display = "none";
+              document.body.style.overflow = "";
               // Trigger initial scroll reveal check
               checkReveal();
             }, 600); // Wait for CSS opacity transition (600ms)
@@ -67,44 +78,44 @@ import '../styles/global.css';
         }, 1500);
 
         // Scroll Reveal Implementation
-        const reveals = document.querySelectorAll('.reveal');
+        const reveals = document.querySelectorAll(".reveal");
         const checkReveal = () => {
           const windowHeight = window.innerHeight;
-          reveals.forEach(el => {
+          reveals.forEach((el) => {
             const elementTop = el.getBoundingClientRect().top;
             const elementVisible = 100; // Activation threshold in pixels
             if (elementTop < windowHeight - elementVisible) {
-              el.classList.add('active');
+              el.classList.add("active");
             }
           });
         };
 
-        window.addEventListener('scroll', checkReveal);
-        
+        window.addEventListener("scroll", checkReveal);
+
         // Mobile Navigation Toggle
-        const menuBtn = document.getElementById('menu-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        
+        const menuBtn = document.getElementById("menu-toggle");
+        const navMenu = document.getElementById("nav-menu");
+
         if (menuBtn && navMenu) {
-          menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            
+          menuBtn.addEventListener("click", () => {
+            menuBtn.classList.toggle("active");
+            navMenu.classList.toggle("active");
+
             // Toggle body scroll when mobile menu is open
-            if (navMenu.classList.contains('active')) {
-              document.body.style.overflow = 'hidden';
+            if (navMenu.classList.contains("active")) {
+              document.body.style.overflow = "hidden";
             } else {
-              document.body.style.overflow = '';
+              document.body.style.overflow = "";
             }
           });
-          
+
           // Close mobile menu when a link is clicked
-          const navLinks = navMenu.querySelectorAll('a');
-          navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-              menuBtn.classList.remove('active');
-              navMenu.classList.remove('active');
-              document.body.style.overflow = '';
+          const navLinks = navMenu.querySelectorAll("a");
+          navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              menuBtn.classList.remove("active");
+              navMenu.classList.remove("active");
+              document.body.style.overflow = "";
             });
           });
         }

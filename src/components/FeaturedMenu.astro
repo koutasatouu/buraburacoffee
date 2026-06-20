@@ -1,40 +1,70 @@
 ---
 /* FeaturedMenu.astro */
+interface Props {
+  lang?: string;
+}
+
+const { lang = "id" } = Astro.props;
+
 const signatures = [
   {
     name: "Dirty Zero (Signature)",
-    description: "Cita rasa legendaris dari espresso ristretto ganda yang dituangkan perlahan di atas susu terdistilasi dingin.",
+    descriptionId:
+      "Cita rasa legendaris dari espresso ristretto ganda yang dituangkan perlahan di atas susu terdistilasi dingin.",
+    descriptionEn:
+      "The legendary taste of double ristretto espresso poured slowly over cold, specially distilled milk.",
     price: "35k",
-    tag: "Most Popular",
-    image: "/hero.png" // Using the hero coffee image
+    tagId: "Terpopuler",
+    tagEn: "Most Popular",
+    image: "/hero.png",
   },
   {
     name: "Boring Dirty",
-    description: "Ristretto ganda dengan susu distilasi khusus racikan rahasia kami yang menghasilkan rasa gurih alami yang tebal.",
+    descriptionId:
+      "Ristretto ganda dengan susu distilasi khusus racikan rahasia kami yang menghasilkan rasa gurih alami yang tebal.",
+    descriptionEn:
+      "Double ristretto with our secret recipe distilled milk, producing a thick, naturally savory taste.",
     price: "45k",
-    tag: "Special Craft",
-    image: "/hero.png" // Shared image for dirty coffee series
+    tagId: "Karya Spesial",
+    tagEn: "Special Craft",
+    image: "/hero.png",
   },
   {
     name: "Montblanc",
-    description: "Seduhan dingin (cold brew) premium yang ditutup dengan Citrusy Cold Foam beraroma lemon segar.",
+    descriptionId:
+      "Seduhan dingin (cold brew) premium yang ditutup dengan Citrusy Cold Foam beraroma lemon segar.",
+    descriptionEn:
+      "Premium cold brew topped with house-made, fresh lemon-infused Citrusy Cold Foam.",
     price: "37k",
-    tag: "Citrusy & Creamy",
-    image: "/barista.png" // Barista brewing context
+    tagId: "Segar & Creamy",
+    tagEn: "Citrusy & Creamy",
+    image: "/barista.png",
   },
   {
     name: "Pain Au Callaubaut",
-    description: "Croissant berlapis khas Perancis yang diisi dengan cokelat Callaubaut premium yang meleleh sempurna.",
+    descriptionId:
+      "Croissant berlapis khas Perancis yang diisi dengan cokelat Callaubaut premium yang meleleh sempurna.",
+    descriptionEn:
+      "Classic French layered croissant filled with premium, perfectly melted Callaubaut dark chocolate.",
     price: "32k",
-    tag: "Freshly Baked",
-    image: "/pastries.png" // Pastry image
-  }
+    tagId: "Dipanggang Segar",
+    tagEn: "Freshly Baked",
+    image: "/pastries.png",
+  },
 ];
 
 const coffeeMenu = [
   { name: "Dirty", price: "35", desc: "Ristretto & Distilled Milk" },
-  { name: "Boring Dirty", price: "45", desc: "Ristretto & Special Distilled Milk" },
-  { name: "Montblanc", price: "37", desc: "Cold brew topped with Citrusy Cold Foam" },
+  {
+    name: "Boring Dirty",
+    price: "45",
+    desc: "Ristretto & Special Distilled Milk",
+  },
+  {
+    name: "Montblanc",
+    price: "37",
+    desc: "Cold brew topped with Citrusy Cold Foam",
+  },
   { name: "Magic", price: "32/37", desc: "Ristretto & Milk/Distilled Milk" },
   { name: "ESP-19", price: "30", desc: "Cold Whip Cream & Hot Lungo" },
   { name: "White", price: "32", desc: "Cafe Latte, Cappuccino" },
@@ -44,23 +74,51 @@ const coffeeMenu = [
   { name: "Espresso", price: "25", desc: "Espresso shot" },
   { name: "Americano Lemon", price: "28", desc: "Espresso, Lemon" },
   { name: "LeTonic", price: "30", desc: "Espresso, Tonic Water, Lemon" },
-  { name: "Homongger", price: "30", desc: "Espresso, Honey, Lemon, Ginger Tonic" }
+  {
+    name: "Homongger",
+    price: "30",
+    desc: "Espresso, Honey, Lemon, Ginger Tonic",
+  },
 ];
 
 const nonCoffeeMenu = [
   { name: "Choco", price: "28", desc: "Chocolate, Milk" },
   { name: "Matcha", price: "28", desc: "Matcha, Milk" },
-  { name: "Honey Spice", price: "25", desc: "Honey, Lemon, Ginger, Tonic Water" },
+  {
+    name: "Honey Spice",
+    price: "25",
+    desc: "Honey, Lemon, Ginger, Tonic Water",
+  },
   { name: "Lychee Tea", price: "25", desc: "Classic Shaken Lychee Tea" },
-  { name: "Ready-To-Drink", price: "30", desc: "Assorted Flavors" }
+  { name: "Ready-To-Drink", price: "30", desc: "Assorted Flavors" },
 ];
 
 const pastryMenu = [
-  { name: "Triple Cheese", price: "30", desc: "Premium flaky croissant filled with triple cheese blend" },
-  { name: "Pain Au Callaubaut", price: "32", desc: "Buttery layered pastry filled with dark Callaubaut chocolate" },
-  { name: "Almond Croissant", price: "30", desc: "Topped with sweet almond cream and crispy sliced almonds" },
-  { name: "Beef and Cheese Croissant", price: "30", desc: "Savory croissant stuffed with premium smoked beef and cheese" },
-  { name: "Choco Hazelnut Praline Croissant", price: "37", desc: "Decadent croissant with creamy hazelnut chocolate filling" }
+  {
+    name: "Triple Cheese",
+    price: "30",
+    desc: "Premium flaky croissant filled with triple cheese blend",
+  },
+  {
+    name: "Pain Au Callaubaut",
+    price: "32",
+    desc: "Buttery layered pastry filled with dark Callaubaut chocolate",
+  },
+  {
+    name: "Almond Croissant",
+    price: "30",
+    desc: "Topped with sweet almond cream and crispy sliced almonds",
+  },
+  {
+    name: "Beef and Cheese Croissant",
+    price: "30",
+    desc: "Savory croissant stuffed with premium smoked beef and cheese",
+  },
+  {
+    name: "Choco Hazelnut Praline Croissant",
+    price: "37",
+    desc: "Decadent croissant with creamy hazelnut chocolate filling",
+  },
 ];
 ---
 
@@ -68,39 +126,81 @@ const pastryMenu = [
   <div class="container">
     <!-- Header -->
     <div class="menu-header reveal">
-      <span class="badge">Daftar Menu</span>
-      <h2 class="section-title text-center">Menyajikan Kenikmatan <br/><span class="text-gradient-blue">Kopi & Hidangan Pilihan</span></h2>
+      <span class="badge">{lang === "id" ? "Daftar Menu" : "Menu List"}</span>
+      <h2 class="section-title text-center">
+        {
+          lang === "id" ? (
+            <>
+              Menyajikan Kenikmatan{" "}
+              <>
+                <br />
+                <span class="text-gradient-blue">Kopi & Hidangan Pilihan</span>
+              </>
+            </>
+          ) : (
+            <>
+              Serving Exquisite{" "}
+              <>
+                <br />
+                <span class="text-gradient-blue">Coffee & Baked Goods</span>
+              </>
+            </>
+          )
+        }
+      </h2>
       <p class="section-subtitle">
-        Pilihlah cita rasa yang sesuai dengan suasana hati Anda—dari minuman berbasis espresso ristretto khas kami hingga pastri renyah pembuat bahagia.
+        {
+          lang === "id"
+            ? "Pilihlah cita rasa yang sesuai dengan suasana hati Anda—dari minuman berbasis espresso ristretto khas kami hingga pastri renyah pembuat bahagia."
+            : "Choose the flavor that suits your mood—from our signature espresso ristretto-based drinks to crispy, happiness-inducing pastries."
+        }
       </p>
     </div>
 
     <!-- Interactive Navigation Tabs -->
     <div class="menu-tabs-wrapper reveal reveal-delay-1">
       <div class="menu-tabs">
-        <button class="tab-btn active" data-tab="signatures">Signature Drinks</button>
-        <button class="tab-btn" data-tab="full-menu">Complete Menu</button>
+        <div class="tab-indicator"></div>
+        <button class="tab-btn active" data-tab="signatures"
+          >{lang === "id" ? "Minuman Signature" : "Signature Drinks"}</button
+        >
+        <button class="tab-btn" data-tab="full-menu"
+          >{lang === "id" ? "Menu Lengkap" : "Complete Menu"}</button
+        >
       </div>
     </div>
 
     <!-- Tab 1: Signatures Grid -->
     <div class="tab-content active" id="tab-signatures">
       <div class="signatures-grid">
-        {signatures.map((item, index) => (
-          <div class={`signature-card glass-card reveal reveal-delay-${index + 1}`}>
-            <div class="card-image-container">
-              <img src={item.image} alt={item.name} class="card-image" loading="lazy" />
-              <span class="card-badge">{item.tag}</span>
-            </div>
-            <div class="card-info">
-              <div class="card-header-row">
-                <h3 class="card-name">{item.name}</h3>
-                <span class="card-price">{item.price}</span>
+        {
+          signatures.map((item, index) => (
+            <div
+              class={`signature-card glass-card reveal reveal-delay-${index + 1}`}
+            >
+              <div class="card-image-container">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  class="card-image"
+                  loading="lazy"
+                />
+                <span class="card-badge">
+                  {lang === "id" ? item.tagId : item.tagEn}
+                </span>
               </div>
-              <p class="card-description">{item.description}</p>
+              <div class="card-info">
+                <div class="card-header-row">
+                  <h3 class="card-name">{item.name}</h3>
+                  <span class="card-price">{item.price}</span>
+                </div>
+                <p class="card-description">
+                  {lang === "id" ? item.descriptionId : item.descriptionEn}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
 
@@ -110,40 +210,61 @@ const pastryMenu = [
         <!-- Blue Board: Espresso & Non-Coffee (Matches physical menu style) -->
         <div class="menu-board blue-board">
           <div class="board-brand-header">
-            <svg class="board-logo" viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg" fill="none">
-              <path d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z" fill="currentColor"/>
-              <path d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z" fill="currentColor"/>
+            <svg
+              class="board-logo"
+              viewBox="0 0 44 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+            >
+              <path
+                d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z"
+                fill="currentColor"></path>
+              <path
+                d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z"
+                fill="currentColor"></path>
             </svg>
             <span class="board-brand-name">BURA BURA</span>
           </div>
 
           <div class="menu-category">
-            <h3 class="category-title">Espresso-Based & Filter Coffee</h3>
+            <h3 class="category-title">
+              {
+                lang === "id"
+                  ? "Kopi & Espresso"
+                  : "Espresso-Based & Filter Coffee"
+              }
+            </h3>
             <div class="menu-list">
-              {coffeeMenu.map((item) => (
-                <div class="menu-item-row">
-                  <div class="menu-item-info">
-                    <span class="item-name">{item.name}</span>
-                    <span class="item-desc">{item.desc}</span>
+              {
+                coffeeMenu.map((item) => (
+                  <div class="menu-item-row">
+                    <div class="menu-item-info">
+                      <span class="item-name">{item.name}</span>
+                      <span class="item-desc">{item.desc}</span>
+                    </div>
+                    <span class="item-price">{item.price}</span>
                   </div>
-                  <span class="item-price">{item.price}</span>
-                </div>
-              ))}
+                ))
+              }
             </div>
           </div>
 
           <div class="menu-category mt-3">
-            <h3 class="category-title">Non-Coffee & Others</h3>
+            <h3 class="category-title">
+              {lang === "id" ? "Bukan Kopi & Lainnya" : "Non-Coffee & Others"}
+            </h3>
             <div class="menu-list">
-              {nonCoffeeMenu.map((item) => (
-                <div class="menu-item-row">
-                  <div class="menu-item-info">
-                    <span class="item-name">{item.name}</span>
-                    <span class="item-desc">{item.desc}</span>
+              {
+                nonCoffeeMenu.map((item) => (
+                  <div class="menu-item-row">
+                    <div class="menu-item-info">
+                      <span class="item-name">{item.name}</span>
+                      <span class="item-desc">{item.desc}</span>
+                    </div>
+                    <span class="item-price">{item.price}</span>
                   </div>
-                  <span class="item-price">{item.price}</span>
-                </div>
-              ))}
+                ))
+              }
             </div>
           </div>
         </div>
@@ -151,28 +272,41 @@ const pastryMenu = [
         <!-- Beige Board: Pastry (Matches physical menu style) -->
         <div class="menu-board beige-board">
           <div class="board-brand-header">
-            <svg class="board-logo text-dark" viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg" fill="none">
-              <path d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z" fill="currentColor"/>
-              <path d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z" fill="currentColor"/>
+            <svg
+              class="board-logo text-dark"
+              viewBox="0 0 44 24"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+            >
+              <path
+                d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z"
+                fill="currentColor"></path>
+              <path
+                d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z"
+                fill="currentColor"></path>
             </svg>
             <span class="board-brand-name text-dark">BURA BURA</span>
           </div>
 
           <div class="menu-category text-dark">
-            <h3 class="category-title border-dark">Pastry Selection</h3>
+            <h3 class="category-title border-dark">
+              {lang === "id" ? "Pilihan Pastri" : "Pastry Selection"}
+            </h3>
             <div class="menu-list">
-              {pastryMenu.map((item) => (
-                <div class="menu-item-row border-dark-subtle">
-                  <div class="menu-item-info">
-                    <span class="item-name text-dark">{item.name}</span>
-                    <span class="item-desc text-dark-muted">{item.desc}</span>
+              {
+                pastryMenu.map((item) => (
+                  <div class="menu-item-row border-dark-subtle">
+                    <div class="menu-item-info">
+                      <span class="item-name text-dark">{item.name}</span>
+                      <span class="item-desc text-dark-muted">{item.desc}</span>
+                    </div>
+                    <span class="item-price text-dark">{item.price}</span>
                   </div>
-                  <span class="item-price text-dark">{item.price}</span>
-                </div>
-              ))}
+                ))
+              }
             </div>
           </div>
-          
+
           <!-- Large Pastry watermark text vertically aligned -->
           <div class="board-vertical-brand">PASTRY</div>
         </div>
@@ -183,28 +317,78 @@ const pastryMenu = [
 
 <script>
   // Menu Tab Toggle logic
-  document.addEventListener('DOMContentLoaded', () => {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        tabBtns.forEach(b => b.classList.remove('active'));
-        
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        const tabTarget = btn.getAttribute('data-tab');
-        
-        // Toggle tab contents
-        const contents = document.querySelectorAll('.tab-content');
-        contents.forEach(content => {
-          content.classList.remove('active');
-        });
-        
-        const activeContent = document.getElementById(`tab-${tabTarget}`);
-        if (activeContent) {
-          activeContent.classList.add('active');
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    const indicator = document.querySelector(
+      ".tab-indicator",
+    ) as HTMLElement | null;
+    const tabsContainer = document.querySelector(".menu-tabs");
+
+    if (tabsContainer) {
+      tabsContainer.classList.add("js-tabs");
+    }
+
+    const updateIndicator = (activeBtn: Element) => {
+      if (indicator && activeBtn && activeBtn.parentElement) {
+        const rect = activeBtn.getBoundingClientRect();
+        const parentRect = activeBtn.parentElement.getBoundingClientRect();
+
+        // Calculate relative position
+        const left = rect.left - parentRect.left;
+        const width = rect.width;
+
+        indicator.style.left = `${left}px`;
+        indicator.style.width = `${width}px`;
+      }
+    };
+
+    // Initialize indicator position
+    const activeBtn = document.querySelector(".tab-btn.active");
+    if (activeBtn) {
+      // Small timeout to ensure layout is complete and fonts loaded
+      setTimeout(() => updateIndicator(activeBtn), 50);
+    }
+
+    // Update on resize to keep it perfectly aligned
+    window.addEventListener("resize", () => {
+      const active = document.querySelector(".tab-btn.active");
+      if (active) updateIndicator(active);
+    });
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.classList.contains("active")) return;
+
+        const currentActiveBtn = document.querySelector(".tab-btn.active");
+        if (currentActiveBtn) {
+          currentActiveBtn.classList.remove("active");
+        }
+        btn.classList.add("active");
+        updateIndicator(btn);
+
+        const tabTarget = btn.getAttribute("data-tab");
+        const currentActiveContent = document.querySelector(
+          ".tab-content.active",
+        );
+        const nextActiveContent = document.getElementById(`tab-${tabTarget}`);
+
+        if (
+          currentActiveContent &&
+          currentActiveContent !== nextActiveContent
+        ) {
+          // Add leaving class for exit transition
+          currentActiveContent.classList.add("leaving");
+
+          // Wait for exit transition to complete before showing new one
+          setTimeout(() => {
+            currentActiveContent.classList.remove("active", "leaving");
+
+            if (nextActiveContent) {
+              nextActiveContent.classList.add("active");
+            }
+          }, 200); // Duration matches fadeOut transition (200ms)
+        } else if (nextActiveContent) {
+          nextActiveContent.classList.add("active");
         }
       });
     });
@@ -240,12 +424,26 @@ const pastryMenu = [
   }
 
   .menu-tabs {
+    position: relative;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.05);
     padding: 0.4rem;
     border-radius: 9999px;
     display: inline-flex;
     gap: 0.25rem;
+    z-index: 1;
+  }
+
+  .tab-indicator {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    bottom: 0.4rem;
+    background-color: var(--color-blue-primary);
+    border-radius: 9999px;
+    box-shadow: 0 4px 12px var(--color-blue-glow-strong);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: -1;
   }
 
   .tab-btn {
@@ -271,14 +469,52 @@ const pastryMenu = [
     box-shadow: 0 4px 12px var(--color-blue-glow-strong);
   }
 
+  /* Progressive Enhancement for Tabs Indicator if JS is running */
+  .js-tabs .tab-btn.active {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .menu-tabs:not(.js-tabs) .tab-indicator {
+    display: none;
+  }
+
   /* Tab Content Handling */
   .tab-content {
     display: none;
+    opacity: 0;
   }
 
   .tab-content.active {
     display: block;
-    animation: fadeIn 0.6s ease;
+    animation: slideInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .tab-content.leaving {
+    display: block;
+    animation: fadeOut 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+    }
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   /* Signatures Grid */
@@ -375,7 +611,7 @@ const pastryMenu = [
     padding: 3rem;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   }
 
   /* Blue Board (Coffee) */
@@ -516,7 +752,8 @@ const pastryMenu = [
       padding: 1.75rem;
     }
 
-    .item-name, .item-price {
+    .item-name,
+    .item-price {
       font-size: 0.95rem;
     }
 

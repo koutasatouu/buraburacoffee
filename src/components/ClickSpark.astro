@@ -1,0 +1,208 @@
+---
+/* ClickSpark.astro */
+interface Props {
+  sparkColor?: string;
+  sparkSize?: number;
+  sparkRadius?: number;
+  sparkCount?: number;
+  duration?: number;
+  easing?: string;
+  extraScale?: number;
+}
+
+const {
+  sparkColor = "#1a3fe2" /* Match Bura Bura electric blue signature */,
+  sparkSize = 10,
+  sparkRadius = 20,
+  sparkCount = 8,
+  duration = 400,
+  easing = "ease-out",
+  extraScale = 1.2,
+} = Astro.props;
+---
+
+<div
+  class="click-spark-container"
+  data-color={sparkColor}
+  data-size={sparkSize}
+  data-radius={sparkRadius}
+  data-count={sparkCount}
+  data-duration={duration}
+  data-easing={easing}
+  data-scale={extraScale}
+>
+  <canvas class="click-spark-canvas"></canvas>
+  <slot />
+</div>
+
+<style>
+  .click-spark-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .click-spark-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999; /* Ensure sparks render on top of buttons/content */
+  }
+</style>
+
+<script>
+  class ClickSpark {
+    container: HTMLElement;
+    canvas: HTMLCanvasElement;
+    ctx: CanvasRenderingContext2D;
+    sparkColor: string;
+    sparkSize: number;
+    sparkRadius: number;
+    sparkCount: number;
+    duration: number;
+    easing: string;
+    extraScale: number;
+    sparks: Array<{ x: number; y: number; angle: number; startTime: number }>;
+    animationId: number | null;
+
+    constructor(container: HTMLElement) {
+      this.container = container;
+      this.canvas = container.querySelector(
+        ".click-spark-canvas",
+      ) as HTMLCanvasElement;
+      this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
+
+      this.sparkColor = container.getAttribute("data-color") || "#1a3fe2";
+      this.sparkSize = parseFloat(container.getAttribute("data-size") || "10");
+      this.sparkRadius = parseFloat(
+        container.getAttribute("data-radius") || "20",
+      );
+      this.sparkCount = parseInt(container.getAttribute("data-count") || "8");
+      this.duration = parseFloat(
+        container.getAttribute("data-duration") || "400",
+      );
+      this.easing = container.getAttribute("data-easing") || "ease-out";
+      this.extraScale = parseFloat(
+        container.getAttribute("data-scale") || "1.2",
+      );
+
+      this.sparks = [];
+      this.animationId = null;
+
+      this.init();
+    }
+
+    init() {
+      const resizeCanvas = () => {
+        const { width, height } = this.container.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        const targetWidth = Math.floor(width * dpr);
+        const targetHeight = Math.floor(height * dpr);
+
+        if (
+          this.canvas.width !== targetWidth ||
+          this.canvas.height !== targetHeight
+        ) {
+          this.canvas.width = targetWidth;
+          this.canvas.height = targetHeight;
+          this.ctx.scale(dpr, dpr);
+        }
+      };
+
+      let resizeTimeout: number;
+      const ro = new ResizeObserver(() => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizeCanvas, 100);
+      });
+      ro.observe(this.container);
+      resizeCanvas();
+
+      // Listen to clicks on the wrapper
+      this.container.addEventListener("click", (e) => this.handleClick(e));
+
+      this.animate();
+    }
+
+    easeFunc(t: number): number {
+      switch (this.easing) {
+        case "linear":
+          return t;
+        case "ease-in":
+          return t * t;
+        case "ease-in-out":
+          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        default: // ease-out
+          return t * (2 - t);
+      }
+    }
+
+    handleClick(e: MouseEvent) {
+      const rect = this.canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const now = performance.now();
+
+      const newSparks = Array.from({ length: this.sparkCount }, (_, i) => ({
+        x,
+        y,
+        angle: (2 * Math.PI * i) / this.sparkCount,
+        startTime: now,
+      }));
+
+      this.sparks.push(...newSparks);
+    }
+
+    animate() {
+      const draw = (timestamp: number) => {
+        const dpr = window.devicePixelRatio || 1;
+        const width = this.canvas.width / dpr;
+        const height = this.canvas.height / dpr;
+
+        this.ctx.clearRect(0, 0, width, height);
+
+        this.sparks = this.sparks.filter((spark) => {
+          const elapsed = timestamp - spark.startTime;
+          if (elapsed >= this.duration) {
+            return false;
+          }
+
+          const progress = elapsed / this.duration;
+          const eased = this.easeFunc(progress);
+
+          const distance = eased * this.sparkRadius * this.extraScale;
+          const lineLength = this.sparkSize * (1 - eased);
+
+          const x1 = spark.x + distance * Math.cos(spark.angle);
+          const y1 = spark.y + distance * Math.sin(spark.angle);
+          const x2 = spark.x + (distance + lineLength) * Math.cos(spark.angle);
+          const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle);
+
+          this.ctx.strokeStyle = this.sparkColor;
+          this.ctx.lineWidth = 2.5;
+          this.ctx.beginPath();
+          this.ctx.moveTo(x1, y1);
+          this.ctx.lineTo(x2, y2);
+          this.ctx.stroke();
+
+          return true;
+        });
+
+        this.animationId = requestAnimationFrame(draw);
+      };
+
+      this.animationId = requestAnimationFrame(draw);
+    }
+  }
+
+  // Initialize on load
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".click-spark-container").forEach((el) => {
+      new ClickSpark(el as HTMLElement);
+    });
+  });
+</script>

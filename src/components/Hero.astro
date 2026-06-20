@@ -1,5 +1,10 @@
 ---
 /* Hero.astro */
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
 ---
 
 <section class="hero-section">
@@ -15,11 +20,13 @@
         <span class="text-gradient-blue">Coffee Culture</span>
       </h1>
       <p class="hero-subtitle">
-        Menghadirkan pengalaman kopi spesialti murni tanpa gula yang ramah di lidah, dikemas dalam ruang industrial minimalis untuk ketenangan momen Anda.
+        {lang === 'id' 
+          ? "Menghadirkan pengalaman kopi spesialti murni tanpa gula yang ramah di lidah, dikemas dalam ruang industrial minimalis untuk ketenangan momen Anda."
+          : "Bringing you a pure, sugar-less specialty coffee experience that is friendly to your palate, packaged in a minimalist industrial space for your quiet moments."}
       </p>
       <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">Lihat Menu</a>
-        <a href="#location" class="btn btn-secondary">Kunjungi Kafe</a>
+        <a href="#menu" class="btn btn-primary">{lang === 'id' ? 'Lihat Menu' : 'View Menu'}</a>
+        <a href="#location" class="btn btn-secondary">{lang === 'id' ? 'Kunjungi Kafe' : 'Visit Cafe'}</a>
       </div>
       
       <!-- Quick Info Bar -->
@@ -31,12 +38,12 @@
         <div class="info-divider"></div>
         <div class="info-item">
           <span class="info-number">Sugar-Free</span>
-          <span class="info-label">Culture Pioneers</span>
+          <span class="info-label">{lang === 'id' ? 'Pelopor Budaya' : 'Culture Pioneers'}</span>
         </div>
         <div class="info-divider"></div>
         <div class="info-item">
           <span class="info-number">Industrial</span>
-          <span class="info-label">Cozy Architecture</span>
+          <span class="info-label">{lang === 'id' ? 'Arsitektur Tenang' : 'Cozy Architecture'}</span>
         </div>
       </div>
     </div>
