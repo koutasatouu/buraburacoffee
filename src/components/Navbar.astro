@@ -1,0 +1,253 @@
+---
+/* Navbar.astro */
+---
+
+<header class="navbar-header">
+  <div class="container nav-container">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-logo-link" aria-label="Bura Bura Coffee Home">
+      <div class="logo-icon">
+        <svg viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+          <path d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z" fill="currentColor"/>
+          <path d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z" fill="currentColor"/>
+        </svg>
+      </div>
+      <span class="brand-name">BURA BURA</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav class="desktop-nav">
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">Tentang Kami</a></li>
+        <li><a href="#menu" class="nav-link">Menu</a></li>
+        <li><a href="#gallery" class="nav-link">Experience</a></li>
+        <li><a href="#location" class="nav-link">Lokasi</a></li>
+      </ul>
+    </nav>
+
+    <!-- Navbar Action Button -->
+    <div class="nav-actions">
+      <a href="#contact" class="btn btn-primary btn-nav">Pesan Sekarang</a>
+      <!-- Hamburger Menu Button -->
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu" aria-controls="nav-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu -->
+  <nav class="mobile-nav" id="nav-menu">
+    <ul class="mobile-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">Tentang Kami</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#gallery">Experience</a></li>
+      <li><a href="#location">Lokasi</a></li>
+      <li><a href="#contact" class="btn btn-primary mobile-cta">Pesan Sekarang</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .navbar-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(8, 9, 13, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: var(--transition-smooth);
+  }
+
+  .nav-container {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #ffffff;
+    font-weight: 800;
+  }
+
+  .logo-icon {
+    width: 32px;
+    color: var(--color-blue-primary);
+    transition: var(--transition-smooth);
+  }
+
+  .brand-logo-link:hover .logo-icon {
+    transform: rotate(-5deg) scale(1.05);
+    color: var(--color-blue-light);
+  }
+
+  .brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+  }
+
+  .desktop-nav {
+    display: block;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.25rem;
+  }
+
+  .nav-link {
+    font-family: var(--font-subheading);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text-light-muted);
+    position: relative;
+    padding: 0.5rem 0;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-blue-primary);
+    transition: var(--transition-smooth);
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn-nav {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.85rem;
+  }
+
+  /* Menu Toggle Button */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1010;
+  }
+
+  .menu-toggle .bar {
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: var(--transition-smooth);
+  }
+
+  /* Animated Hamburger Menu */
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Mobile Navigation Menu */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-bg-dark);
+    z-index: 1005;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+    transition: var(--transition-smooth);
+  }
+
+  .mobile-nav.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  .mobile-links {
+    list-style: none;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 80%;
+    max-width: 400px;
+  }
+
+  .mobile-links a {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: block;
+    transition: var(--transition-fast);
+  }
+
+  .mobile-links a:hover {
+    color: var(--color-blue-light);
+    transform: scale(1.05);
+  }
+
+  .mobile-cta {
+    font-family: var(--font-subheading) !important;
+    font-size: 1rem !important;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .desktop-nav {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: flex;
+    }
+    
+    .btn-nav {
+      display: none;
+    }
+  }
+</style>

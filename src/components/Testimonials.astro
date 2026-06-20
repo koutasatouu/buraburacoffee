@@ -1,0 +1,165 @@
+---
+/* Testimonials.astro */
+const reviews = [
+  {
+    name: "Aditya Nugroho",
+    role: "Creative Director",
+    quote: "Akhirnya ada kafe di Jogja yang berani memelopori kopi berkualitas tanpa tambahan gula. Dirty Zero-nya sangat lembut, gurih alaminya dapet banget dari ristretto. Suasana industrialnya juga sangat kondusif buat nyari ide.",
+    rating: 5
+  },
+  {
+    name: "Nadia Utami",
+    role: "Architect & Designer",
+    quote: "Jatuh cinta dengan desain arsitektur semen ekspos minimalisnya. Perpaduan concrete grey dengan aksen cobalt blue-nya sangat estetis. Pencahayaan alami yang masuk bikin nongkrong sore di sini berkesan banget.",
+    rating: 5
+  },
+  {
+    name: "Rian Pratama",
+    role: "Software Engineer",
+    quote: "Wi-Fi kencang, colokan berlimpah, dan kopi sehat yang bikin fokus coding seharian tanpa sugar crash setelahnya. Cabang Cokroaminoto sekarang resmi jadi coworking space andalan saya.",
+    rating: 5
+  }
+];
+---
+
+<section class="section section-dark">
+  <div class="container">
+    <!-- Header -->
+    <div class="testimonials-header reveal">
+      <span class="badge">Testimoni Pengunjung</span>
+      <h2 class="section-title text-center">Apa Kata <br/><span class="text-gradient-blue">Sahabat Bura Bura?</span></h2>
+      <p class="section-subtitle">
+        Kepuasan pengunjung adalah prioritas kami. Berikut adalah pengalaman jujur mereka setelah mengunjungi ruang dan mencicipi kopi kami.
+      </p>
+    </div>
+
+    <!-- Review Grid -->
+    <div class="testimonials-grid">
+      {reviews.map((review, index) => (
+        <div class={`review-card glass-card reveal reveal-delay-${index + 1}`}>
+          <!-- Rating Stars -->
+          <div class="rating-stars">
+            {Array.from({ length: review.rating }).map(() => (
+              <svg class="star-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <blockquote class="review-quote">
+            "{review.quote}"
+          </blockquote>
+
+          <!-- Author Info -->
+          <div class="review-author">
+            <div class="author-avatar">
+              <!-- Initial Avatar -->
+              <span>{review.name.charAt(0)}</span>
+            </div>
+            <div class="author-details">
+              <span class="author-name">{review.name}</span>
+              <span class="author-role">{review.role}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .review-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .rating-stars {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+    color: #ffb800; /* Warm gold star */
+  }
+
+  .star-icon {
+    fill: #ffb800;
+  }
+
+  .review-quote {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--color-text-light-muted);
+    margin-bottom: 2rem;
+    font-style: italic;
+    flex-grow: 1;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 1.25rem;
+  }
+
+  .author-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--color-blue-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 10px rgba(26, 63, 226, 0.2);
+  }
+
+  .author-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .author-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .author-role {
+    font-size: 0.78rem;
+    color: var(--color-text-light-muted);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 576px) {
+    .review-card {
+      padding: 1.75rem;
+    }
+  }
+</style>

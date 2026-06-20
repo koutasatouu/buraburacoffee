@@ -1,0 +1,271 @@
+---
+/* LocationSection.astro */
+const branches = [
+  {
+    name: "Flagship Store - Cokroaminoto",
+    address: "Ruko Cokro Square, Blok Kav N, Jl. HOS Cokroaminoto, Tegalrejo, Yogyakarta",
+    hours: "Setiap Hari | 08.00 - 23.00 WIB",
+    phone: "+62 812-3456-7890",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.03714241775!2d110.35274577587847!3d-7.785897192233827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a597a7a514d45%3A0x6b49e3bf7f185ef3!2sRuko%20Cokro%20Square!5e0!3m2!1sid!2sid!4v1718880000000!5m2!1sid!2sid",
+    mapsLink: "https://maps.google.com/?q=Bura+Bura+Coffee+Cokroaminoto+Yogyakarta",
+    facilities: "Parkir Luas • 30+ Stopkontak • Smoking Area Outdoor • AC Indoor"
+  },
+  {
+    name: "Cozy Space - Mangkubumi",
+    address: "Jl. Margo Utomo No. 95 (Mangkubumi), Gowongan, Jetis, Yogyakarta",
+    hours: "Setiap Hari | 09.00 - 24.00 WIB",
+    phone: "+62 812-3456-7891",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.085816912386!2d110.3644485758785!3d-7.78065099223871!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59e19d7e57c5%3A0xd64c40552d589cf8!2sJl.%20Margo%20Utomo%20No.95%2C%20Gowongan%2C%20Kec.%20Jetis%2C%20Kota%20Yogyakarta%2C%20Daerah%20Istimewa%20Yogyakarta%2055233!5e0!3m2!1sid!2sid!4v1718880100000!5m2!1sid!2sid",
+    mapsLink: "https://maps.google.com/?q=Bura+Bura+Coffee+Mangkubumi+Yogyakarta",
+    facilities: "Cozy Work Space • High-speed WiFi • Colokan Lengkap • AC Indoor"
+  }
+];
+---
+
+<section id="location" class="section section-light">
+  <div class="container">
+    <!-- Header -->
+    <div class="location-header reveal">
+      <span class="badge badge-light">Lokasi & Kontak</span>
+      <h2 class="section-title text-dark">Kunjungi <span class="text-gradient-blue">Ruang Kami</span></h2>
+      <p class="section-subtitle text-dark-muted">
+        Temukan Bura Bura Coffee terdekat di Yogyakarta. Kami menyediakan tempat yang nyaman untuk bersantai maupun produktif bekerja.
+      </p>
+    </div>
+
+    <!-- Branches Selector and Map split layout -->
+    <div class="location-split">
+      <!-- Left side: Branch Cards -->
+      <div class="branch-cards reveal">
+        {branches.map((branch, index) => (
+          <div class={`branch-card ${index === 0 ? 'active' : ''}`} data-index={index} data-map={branch.mapUrl}>
+            <div class="card-indicator"></div>
+            <div class="branch-info-wrapper">
+              <h3 class="branch-title">{branch.name}</h3>
+              <p class="branch-detail">
+                <svg class="loc-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                {branch.address}
+              </p>
+              <p class="branch-detail">
+                <svg class="loc-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                {branch.hours}
+              </p>
+              <p class="branch-detail">
+                <svg class="loc-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                <span class="facilities-text">{branch.facilities}</span>
+              </p>
+              <div class="branch-actions">
+                <a href={branch.mapsLink} target="_blank" rel="noopener noreferrer" class="btn btn-light btn-sm">
+                  Buka di Google Maps
+                  <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Right side: Embedded Map Visual Frame -->
+      <div class="map-visual reveal reveal-delay-2">
+        <div class="map-frame-wrapper">
+          <iframe 
+            id="branch-map-iframe"
+            src={branches[0].mapUrl} 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Google Maps Bura Bura Coffee"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const branchCards = document.querySelectorAll('.branch-card');
+    const mapIframe = document.getElementById('branch-map-iframe') as HTMLIFrameElement;
+
+    branchCards.forEach(card => {
+      card.addEventListener('click', () => {
+        // Remove active class from all cards
+        branchCards.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked card
+        card.classList.add('active');
+        
+        // Get map URL from data attribute
+        const mapUrl = card.getAttribute('data-map');
+        if (mapIframe && mapUrl) {
+          mapIframe.src = mapUrl;
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .location-header {
+    margin-bottom: 4rem;
+    max-width: 650px;
+  }
+
+  .text-dark {
+    color: var(--color-text-dark);
+  }
+
+  .text-dark-muted {
+    color: var(--color-text-dark-muted);
+  }
+
+  .location-split {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Branch Card List */
+  .branch-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .branch-card {
+    background-color: var(--color-bg-light-accent);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    gap: 1.25rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+  }
+
+  .branch-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+    border-color: rgba(26, 63, 226, 0.1);
+  }
+
+  .branch-card.active {
+    background-color: #ffffff;
+    border-color: rgba(26, 63, 226, 0.2);
+    box-shadow: 0 15px 30px rgba(26, 63, 226, 0.06);
+  }
+
+  .card-indicator {
+    width: 4px;
+    height: 100%;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: var(--transition-fast);
+  }
+
+  .branch-card.active .card-indicator {
+    background-color: var(--color-blue-primary);
+  }
+
+  .branch-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .branch-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-dark);
+  }
+
+  .branch-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    color: var(--color-text-dark-muted);
+    line-height: 1.5;
+  }
+
+  .loc-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-blue-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .facilities-text {
+    font-weight: 600;
+    color: var(--color-blue-primary);
+    font-size: 0.8rem;
+  }
+
+  .branch-actions {
+    margin-top: 1rem;
+  }
+
+  .btn-sm {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.8rem;
+    border-radius: 9999px;
+  }
+
+  .btn-arrow {
+    transition: var(--transition-fast);
+  }
+
+  .btn-light:hover .btn-arrow {
+    transform: translateX(3px);
+  }
+
+  /* Embedded Map Styles */
+  .map-visual {
+    width: 100%;
+    height: 480px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 6px solid #ffffff;
+    background-color: var(--color-bg-light-accent);
+  }
+
+  .map-frame-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .location-split {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .map-visual {
+      height: 380px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .branch-card {
+      padding: 1.5rem;
+    }
+    
+    .map-visual {
+      height: 300px;
+    }
+  }
+</style>

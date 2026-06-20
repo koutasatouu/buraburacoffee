@@ -1,0 +1,528 @@
+---
+/* FeaturedMenu.astro */
+const signatures = [
+  {
+    name: "Dirty Zero (Signature)",
+    description: "Cita rasa legendaris dari espresso ristretto ganda yang dituangkan perlahan di atas susu terdistilasi dingin.",
+    price: "35k",
+    tag: "Most Popular",
+    image: "/hero.png" // Using the hero coffee image
+  },
+  {
+    name: "Boring Dirty",
+    description: "Ristretto ganda dengan susu distilasi khusus racikan rahasia kami yang menghasilkan rasa gurih alami yang tebal.",
+    price: "45k",
+    tag: "Special Craft",
+    image: "/hero.png" // Shared image for dirty coffee series
+  },
+  {
+    name: "Montblanc",
+    description: "Seduhan dingin (cold brew) premium yang ditutup dengan Citrusy Cold Foam beraroma lemon segar.",
+    price: "37k",
+    tag: "Citrusy & Creamy",
+    image: "/barista.png" // Barista brewing context
+  },
+  {
+    name: "Pain Au Callaubaut",
+    description: "Croissant berlapis khas Perancis yang diisi dengan cokelat Callaubaut premium yang meleleh sempurna.",
+    price: "32k",
+    tag: "Freshly Baked",
+    image: "/pastries.png" // Pastry image
+  }
+];
+
+const coffeeMenu = [
+  { name: "Dirty", price: "35", desc: "Ristretto & Distilled Milk" },
+  { name: "Boring Dirty", price: "45", desc: "Ristretto & Special Distilled Milk" },
+  { name: "Montblanc", price: "37", desc: "Cold brew topped with Citrusy Cold Foam" },
+  { name: "Magic", price: "32/37", desc: "Ristretto & Milk/Distilled Milk" },
+  { name: "ESP-19", price: "30", desc: "Cold Whip Cream & Hot Lungo" },
+  { name: "White", price: "32", desc: "Cafe Latte, Cappuccino" },
+  { name: "Black", price: "28", desc: "Americano, Long Black" },
+  { name: "On The Rock", price: "28", desc: "Espresso & Ice" },
+  { name: "Split Shot", price: "35", desc: "White & Espresso" },
+  { name: "Espresso", price: "25", desc: "Espresso shot" },
+  { name: "Americano Lemon", price: "28", desc: "Espresso, Lemon" },
+  { name: "LeTonic", price: "30", desc: "Espresso, Tonic Water, Lemon" },
+  { name: "Homongger", price: "30", desc: "Espresso, Honey, Lemon, Ginger Tonic" }
+];
+
+const nonCoffeeMenu = [
+  { name: "Choco", price: "28", desc: "Chocolate, Milk" },
+  { name: "Matcha", price: "28", desc: "Matcha, Milk" },
+  { name: "Honey Spice", price: "25", desc: "Honey, Lemon, Ginger, Tonic Water" },
+  { name: "Lychee Tea", price: "25", desc: "Classic Shaken Lychee Tea" },
+  { name: "Ready-To-Drink", price: "30", desc: "Assorted Flavors" }
+];
+
+const pastryMenu = [
+  { name: "Triple Cheese", price: "30", desc: "Premium flaky croissant filled with triple cheese blend" },
+  { name: "Pain Au Callaubaut", price: "32", desc: "Buttery layered pastry filled with dark Callaubaut chocolate" },
+  { name: "Almond Croissant", price: "30", desc: "Topped with sweet almond cream and crispy sliced almonds" },
+  { name: "Beef and Cheese Croissant", price: "30", desc: "Savory croissant stuffed with premium smoked beef and cheese" },
+  { name: "Choco Hazelnut Praline Croissant", price: "37", desc: "Decadent croissant with creamy hazelnut chocolate filling" }
+];
+---
+
+<section id="menu" class="section section-dark">
+  <div class="container">
+    <!-- Header -->
+    <div class="menu-header reveal">
+      <span class="badge">Daftar Menu</span>
+      <h2 class="section-title text-center">Menyajikan Kenikmatan <br/><span class="text-gradient-blue">Kopi & Hidangan Pilihan</span></h2>
+      <p class="section-subtitle">
+        Pilihlah cita rasa yang sesuai dengan suasana hati Anda—dari minuman berbasis espresso ristretto khas kami hingga pastri renyah pembuat bahagia.
+      </p>
+    </div>
+
+    <!-- Interactive Navigation Tabs -->
+    <div class="menu-tabs-wrapper reveal reveal-delay-1">
+      <div class="menu-tabs">
+        <button class="tab-btn active" data-tab="signatures">Signature Drinks</button>
+        <button class="tab-btn" data-tab="full-menu">Complete Menu</button>
+      </div>
+    </div>
+
+    <!-- Tab 1: Signatures Grid -->
+    <div class="tab-content active" id="tab-signatures">
+      <div class="signatures-grid">
+        {signatures.map((item, index) => (
+          <div class={`signature-card glass-card reveal reveal-delay-${index + 1}`}>
+            <div class="card-image-container">
+              <img src={item.image} alt={item.name} class="card-image" loading="lazy" />
+              <span class="card-badge">{item.tag}</span>
+            </div>
+            <div class="card-info">
+              <div class="card-header-row">
+                <h3 class="card-name">{item.name}</h3>
+                <span class="card-price">{item.price}</span>
+              </div>
+              <p class="card-description">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Tab 2: Full Menu Visual Boards -->
+    <div class="tab-content" id="tab-full-menu">
+      <div class="full-menu-boards">
+        <!-- Blue Board: Espresso & Non-Coffee (Matches physical menu style) -->
+        <div class="menu-board blue-board">
+          <div class="board-brand-header">
+            <svg class="board-logo" viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <path d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z" fill="currentColor"/>
+              <path d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z" fill="currentColor"/>
+            </svg>
+            <span class="board-brand-name">BURA BURA</span>
+          </div>
+
+          <div class="menu-category">
+            <h3 class="category-title">Espresso-Based & Filter Coffee</h3>
+            <div class="menu-list">
+              {coffeeMenu.map((item) => (
+                <div class="menu-item-row">
+                  <div class="menu-item-info">
+                    <span class="item-name">{item.name}</span>
+                    <span class="item-desc">{item.desc}</span>
+                  </div>
+                  <span class="item-price">{item.price}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="menu-category mt-3">
+            <h3 class="category-title">Non-Coffee & Others</h3>
+            <div class="menu-list">
+              {nonCoffeeMenu.map((item) => (
+                <div class="menu-item-row">
+                  <div class="menu-item-info">
+                    <span class="item-name">{item.name}</span>
+                    <span class="item-desc">{item.desc}</span>
+                  </div>
+                  <span class="item-price">{item.price}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Beige Board: Pastry (Matches physical menu style) -->
+        <div class="menu-board beige-board">
+          <div class="board-brand-header">
+            <svg class="board-logo text-dark" viewBox="0 0 44 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <path d="M 0,4 C 0,1.8 1.8,0 4,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 4 C 1.8,24 0,22.2 0,20 V 4 Z M 10,9.5 C 11.38,9.5 12.5,8.38 12.5,7 C 12.5,5.62 11.38,4.5 10,4.5 C 8.62,4.5 7.5,5.62 7.5,7 C 7.5,8.38 8.62,9.5 10,9.5 Z M 10,19.5 C 11.38,19.5 12.5,18.38 12.5,17 C 12.5,15.62 11.38,14.5 10,14.5 C 8.62,14.5 7.5,15.62 7.5,17 C 7.5,18.38 8.62,19.5 10,19.5 Z" fill="currentColor"/>
+              <path d="M 24,4 C 24,1.8 25.8,0 28,0 h 12 c 2.2,0 4,1.8 4,4 v 16 c 0,2.2 -1.8,4 -4,4 H 28 C 25.8,24 24,22.2 24,20 V 4 Z M 34,9.5 C 35.38,9.5 36.5,8.38 36.5,7 C 36.5,5.62 35.38,4.5 34,4.5 C 32.62,4.5 31.5,5.62 31.5,7 C 31.5,8.38 32.62,9.5 34,9.5 Z M 34,19.5 C 35.38,19.5 36.5,18.38 36.5,17 C 36.5,15.62 35.38,14.5 34,14.5 C 32.62,14.5 31.5,15.62 31.5,17 C 31.5,18.38 32.62,19.5 34,19.5 Z" fill="currentColor"/>
+            </svg>
+            <span class="board-brand-name text-dark">BURA BURA</span>
+          </div>
+
+          <div class="menu-category text-dark">
+            <h3 class="category-title border-dark">Pastry Selection</h3>
+            <div class="menu-list">
+              {pastryMenu.map((item) => (
+                <div class="menu-item-row border-dark-subtle">
+                  <div class="menu-item-info">
+                    <span class="item-name text-dark">{item.name}</span>
+                    <span class="item-desc text-dark-muted">{item.desc}</span>
+                  </div>
+                  <span class="item-price text-dark">{item.price}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <!-- Large Pastry watermark text vertically aligned -->
+          <div class="board-vertical-brand">PASTRY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Menu Tab Toggle logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabBtns.forEach(b => b.classList.remove('active'));
+        
+        // Add active class to clicked button
+        btn.classList.add('active');
+        
+        const tabTarget = btn.getAttribute('data-tab');
+        
+        // Toggle tab contents
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        const activeContent = document.getElementById(`tab-${tabTarget}`);
+        if (activeContent) {
+          activeContent.classList.add('active');
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .menu-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--color-text-light-muted);
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+
+  /* Tabs Navigation */
+  .menu-tabs-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+  }
+
+  .menu-tabs {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0.4rem;
+    border-radius: 9999px;
+    display: inline-flex;
+    gap: 0.25rem;
+  }
+
+  .tab-btn {
+    border: none;
+    background: transparent;
+    color: var(--color-text-light-muted);
+    font-family: var(--font-subheading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+
+  .tab-btn:hover {
+    color: #ffffff;
+  }
+
+  .tab-btn.active {
+    background-color: var(--color-blue-primary);
+    color: #ffffff;
+    box-shadow: 0 4px 12px var(--color-blue-glow-strong);
+  }
+
+  /* Tab Content Handling */
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+    animation: fadeIn 0.6s ease;
+  }
+
+  /* Signatures Grid */
+  .signatures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.25rem;
+  }
+
+  .signature-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .card-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/11;
+    overflow: hidden;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+  }
+
+  .signature-card:hover .card-image {
+    transform: scale(1.06);
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: var(--color-blue-primary);
+    color: #ffffff;
+    font-family: var(--font-subheading);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.8rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+  }
+
+  .card-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+  }
+
+  .card-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .card-price {
+    font-family: var(--font-subheading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--color-blue-light);
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    color: var(--color-text-light-muted);
+    line-height: 1.5;
+  }
+
+  /* Full Menu Boards Styles */
+  .full-menu-boards {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .menu-board {
+    border-radius: 24px;
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  }
+
+  /* Blue Board (Coffee) */
+  .blue-board {
+    background-color: var(--color-blue-primary);
+    color: #ffffff;
+  }
+
+  /* Beige Board (Pastry) */
+  .beige-board {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+  }
+
+  .board-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .board-logo {
+    width: 28px;
+    color: #ffffff;
+  }
+
+  .board-logo.text-dark {
+    color: var(--color-text-dark);
+  }
+
+  .board-brand-name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+  }
+
+  .board-brand-name.text-dark {
+    color: var(--color-text-dark);
+  }
+
+  .category-title {
+    font-family: var(--font-subheading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .category-title.border-dark {
+    border-bottom-color: rgba(15, 18, 29, 0.15);
+  }
+
+  .menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .menu-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+
+  .menu-item-row.border-dark-subtle {
+    border-bottom-color: rgba(15, 18, 29, 0.08);
+  }
+
+  .menu-item-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .menu-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 78%;
+  }
+
+  .item-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .item-desc {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .item-desc.text-dark-muted {
+    color: var(--color-text-dark-muted);
+  }
+
+  .item-price {
+    font-family: var(--font-subheading);
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .board-vertical-brand {
+    position: absolute;
+    bottom: 2.5rem;
+    right: -1rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 3rem;
+    letter-spacing: 0.25em;
+    opacity: 0.06;
+    color: var(--color-text-dark);
+    pointer-events: none;
+  }
+
+  .mt-3 {
+    margin-top: 2.5rem;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 992px) {
+    .full-menu-boards {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .menu-board {
+      padding: 1.75rem;
+    }
+
+    .item-name, .item-price {
+      font-size: 0.95rem;
+    }
+
+    .tab-btn {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.85rem;
+    }
+  }
+</style>

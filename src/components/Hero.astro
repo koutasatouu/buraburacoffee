@@ -1,0 +1,349 @@
+---
+/* Hero.astro */
+---
+
+<section class="hero-section">
+  <!-- Ambient glow in background -->
+  <div class="ambient-glow"></div>
+
+  <div class="container hero-container">
+    <!-- Left Column: Content -->
+    <div class="hero-content animate-fade-in-up">
+      <div class="badge">Bura Bura Coffee Club</div>
+      <h1 class="hero-title">
+        Redefining <br/>
+        <span class="text-gradient-blue">Coffee Culture</span>
+      </h1>
+      <p class="hero-subtitle">
+        Menghadirkan pengalaman kopi spesialti murni tanpa gula yang ramah di lidah, dikemas dalam ruang industrial minimalis untuk ketenangan momen Anda.
+      </p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+        <a href="#location" class="btn btn-secondary">Kunjungi Kafe</a>
+      </div>
+      
+      <!-- Quick Info Bar -->
+      <div class="hero-info-bar">
+        <div class="info-item">
+          <span class="info-number">100%</span>
+          <span class="info-label">Specialty Arabica</span>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-item">
+          <span class="info-number">Sugar-Free</span>
+          <span class="info-label">Culture Pioneers</span>
+        </div>
+        <div class="info-divider"></div>
+        <div class="info-item">
+          <span class="info-number">Industrial</span>
+          <span class="info-label">Cozy Architecture</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Visual Frame -->
+    <div class="hero-visual-frame">
+      <div class="image-wrapper">
+        <img 
+          src="/hero.png" 
+          alt="Bura Bura Signature Layered Dirty Coffee" 
+          class="hero-image"
+          loading="eager"
+        />
+        <div class="image-border-glow"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="scroll-indicator">
+    <a href="#about" aria-label="Scroll down to About Us section">
+      <span class="mouse-icon">
+        <span class="wheel"></span>
+      </span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px; /* Space for Navbar */
+    padding-bottom: 50px;
+    background-color: var(--color-bg-dark);
+    overflow: hidden;
+  }
+
+  /* Ambient glowing blue circles */
+  .ambient-glow {
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, var(--color-blue-glow-strong) 0%, rgba(26, 63, 226, 0) 70%);
+    opacity: 0.8;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 1;
+    animation: pulseGlow 10s ease-in-out infinite alternate;
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--color-text-light-muted);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 4rem;
+  }
+
+  /* Hero Info Bar */
+  .hero-info-bar {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .info-number {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .info-label {
+    font-family: var(--font-subheading);
+    font-size: 0.8rem;
+    color: var(--color-text-light-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .info-divider {
+    width: 1px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Right Side Visuals */
+  .hero-visual-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 4/5;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+    animation: imageReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .image-wrapper:hover .hero-image {
+    transform: scale(1.05);
+  }
+
+  .image-border-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    transition: var(--transition-smooth);
+  }
+
+  .image-wrapper:hover .image-border-glow {
+    box-shadow: inset 0 0 0 2px var(--color-blue-primary), 0 0 30px rgba(26, 63, 226, 0.3);
+  }
+
+  /* Scroll indicator mouse */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: fadeIn 1s ease-out 1.2s forwards;
+    opacity: 0;
+  }
+
+  .mouse-icon {
+    display: block;
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+
+  .mouse-icon:hover {
+    border-color: var(--color-blue-light);
+  }
+
+  .mouse-icon .wheel {
+    display: block;
+    width: 4px;
+    height: 8px;
+    background-color: var(--color-blue-light);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.5s ease-in-out infinite;
+  }
+
+  /* Keyframes for animations */
+  @keyframes scrollWheel {
+    0% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(12px);
+    }
+  }
+
+  @keyframes imageReveal {
+    from {
+      opacity: 0;
+      transform: scale(1.15) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1200px) {
+    .hero-title {
+      font-size: 3.75rem;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .hero-content {
+      align-items: center;
+    }
+
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero-info-bar {
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-visual-frame {
+      order: -1;
+    }
+
+    .image-wrapper {
+      max-width: 380px;
+    }
+    
+    .scroll-indicator {
+      display: none;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hero-title {
+      font-size: 3rem;
+    }
+    
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+    }
+
+    .hero-info-bar {
+      flex-direction: column;
+      gap: 1.5rem;
+      padding-top: 1.5rem;
+    }
+
+    .info-divider {
+      display: none;
+    }
+  }
+</style>

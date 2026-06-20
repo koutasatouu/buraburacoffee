@@ -1,0 +1,148 @@
+---
+/* WhyChooseUs.astro */
+const values = [
+  {
+    title: "Specialty Coffee",
+    desc: "100% biji kopi Arabika pilihan dengan skor rasa premium, diekstraksi menggunakan mesin mutakhir dan barista berpengalaman.",
+    iconPath: `<path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/>`
+  },
+  {
+    title: "Sugar-Less Culture",
+    desc: "Mempelopori kopi tanpa gula tambahan. Kalibrasi rasa ristretto kami memberikan rasa manis alami tanpa menutupi cita rasa asli biji kopi.",
+    iconPath: `<path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>`
+  },
+  {
+    title: "Industrial Ambience",
+    desc: "Desain ruang semen ekspos minimalis dan estetik yang tenang. Sangat kondusif untuk bekerja, berdiskusi, atau sekadar kontemplasi.",
+    iconPath: `<rect x="3" y="3" width="18" height="18" rx="2" stroke-width="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/>`
+  },
+  {
+    title: "High-Speed WiFi",
+    desc: "Koneksi internet serat optik berkecepatan tinggi yang stabil dan merata di seluruh sudut ruangan untuk mendukung produktivitas kerja Anda.",
+    iconPath: `<path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/>`
+  },
+  {
+    title: "Friendly Baristas",
+    desc: "Tim kami menyambut Anda dengan hangat. Kami selalu siap berdiskusi mengenai profil rasa kopi pilihan Anda hari ini.",
+    iconPath: `<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`
+  }
+];
+---
+
+<section class="section section-dark">
+  <!-- Glowing accent in background -->
+  <div class="ambient-glow-bottom"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="why-header reveal">
+      <span class="badge">Keunggulan Kami</span>
+      <h2 class="section-title">Apa Yang Membuat <br/><span class="text-gradient-blue">Bura Bura Berbeda?</span></h2>
+      <p class="section-subtitle">
+        Lebih dari sekadar cangkir kopi, kami memberikan dedikasi kualitas rasa dan kenyamanan ruang untuk pengalaman kunjungan terbaik Anda.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="why-grid">
+      {values.map((item, index) => (
+        <div class={`why-card glass-card reveal reveal-delay-${index + 1}`}>
+          <div class="icon-box">
+            <svg 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              stroke-width="2" 
+              stroke-linecap="round" 
+              stroke-linejoin="round"
+              Fragment
+              set:html={item.iconPath}
+            />
+          </div>
+          <h3 class="card-title">{item.title}</h3>
+          <p class="card-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-header {
+    margin-bottom: 4rem;
+    max-width: 650px;
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .why-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  .icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background-color: var(--color-blue-glow);
+    color: var(--color-blue-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-smooth);
+    border: 1px solid rgba(26, 63, 226, 0.1);
+  }
+
+  .why-card:hover .icon-box {
+    background-color: var(--color-blue-primary);
+    color: #ffffff;
+    transform: scale(1.08) rotate(5deg);
+    box-shadow: 0 8px 20px var(--color-blue-glow-strong);
+  }
+
+  .card-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-desc {
+    font-size: 0.92rem;
+    color: var(--color-text-light-muted);
+    line-height: 1.6;
+  }
+
+  .ambient-glow-bottom {
+    position: absolute;
+    bottom: -20%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, var(--color-blue-glow) 0%, rgba(26, 63, 226, 0) 70%);
+    opacity: 0.5;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 576px) {
+    .why-card {
+      padding: 1.75rem;
+    }
+  }
+</style>
