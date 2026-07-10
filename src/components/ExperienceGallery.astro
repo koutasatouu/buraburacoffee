@@ -49,7 +49,7 @@ const { lang = "id" } = Astro.props;
       <!-- Item 1: Ambience (Large Feature) -->
       <div class="bento-item bento-large reveal">
         <img
-          src="/interior.png"
+          src="/cafe1.jpg"
           alt="Suasana Interior Industrial Minimalis Bura Bura Coffee"
           class="bento-img"
           loading="lazy"
@@ -79,7 +79,7 @@ const { lang = "id" } = Astro.props;
       <!-- Item 2: Coffee Craft (Tall Feature) -->
       <div class="bento-item bento-tall reveal reveal-delay-1">
         <img
-          src="/barista.png"
+          src="/barista1.jpg"
           alt="Proses Brewing Kopi Spesialti Bura Bura"
           class="bento-img"
           loading="lazy"
@@ -102,18 +102,41 @@ const { lang = "id" } = Astro.props;
         </div>
       </div>
 
-      <!-- Item 3: Coffee Drink (Square) -->
+      <!-- Item 3: Coffee Drink & Details (Square Stack) -->
       <div class="bento-item reveal reveal-delay-2">
         <img
-          src="/hero.png"
-          alt="Cangkir Dirty Coffee di Bura Bura"
+          src="/cafe2.jpg"
+          alt={lang === "id" ? "Sajian Kopi Premium Bura Bura" : "Premium Coffee Serving at Bura Bura"}
           class="bento-img"
           loading="lazy"
         />
         <div class="bento-overlay">
           <div class="bento-text">
-            <span class="bento-tag">Signature</span>
-            <h3 class="bento-title">Dirty Zero Series</h3>
+            <span class="bento-tag">
+              {lang === "id" ? "Kopi Signature" : "Signature Coffee"}
+            </span>
+            <h3 class="bento-title">
+              {lang === "id" ? "Dirty Zero Series" : "Dirty Zero Series"}
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="bento-item reveal reveal-delay-2">
+        <img
+          src="/cafe3.jpg"
+          alt={lang === "id" ? "Sudut Estetik Bura Bura Coffee" : "Aesthetic Corner of Bura Bura Coffee"}
+          class="bento-img"
+          loading="lazy"
+        />
+        <div class="bento-overlay">
+          <div class="bento-text">
+            <span class="bento-tag">
+              {lang === "id" ? "Sudut Temu" : "Meeting Spot"}
+            </span>
+            <h3 class="bento-title">
+              {lang === "id" ? "Detail Minimalis" : "Minimalist Details"}
+            </h3>
           </div>
         </div>
       </div>
@@ -136,7 +159,7 @@ const { lang = "id" } = Astro.props;
       <!-- Item 5: Pastries (Wide Feature) -->
       <div class="bento-item bento-wide reveal reveal-delay-4">
         <img
-          src="/pastries.png"
+          src="/pastry.jpg"
           alt="Sajian Pastri Premium di Bura Bura"
           class="bento-img"
           loading="lazy"
